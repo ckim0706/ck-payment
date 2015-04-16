@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  floor_id: MyString
+  name: MyString
+  floor_area: 1
+  deposit: 1
+  rent: 1
+  management_fee: 1
+  tax_1: 1
+  subtotal_1: 1
+  electric_fee: 1
+  tax_2: 1
+  subtotal_2: 1
+  water_fee: 1
+  tv_fee: 1
+  total: 1
+
+two:
+  floor_id: MyString
+  name: MyString
+  floor_area: 1
+  deposit: 1
+  rent: 1
+  management_fee: 1
+  tax_1: 1
+  subtotal_1: 1
+  electric_fee: 1
+  tax_2: 1
+  subtotal_2: 1
+  water_fee: 1
+  tv_fee: 1
+  total: 1

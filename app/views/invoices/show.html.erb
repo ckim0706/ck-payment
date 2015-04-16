@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Floor:</strong>
+  <%= @invoice.floor_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @invoice.name %>
+</p>
+
+<p>
+  <strong>Floor area:</strong>
+  <%= @invoice.floor_area %>
+</p>
+
+<p>
+  <strong>Deposit:</strong>
+  <%= @invoice.deposit %>
+</p>
+
+<p>
+  <strong>Rent:</strong>
+  <%= @invoice.rent %>
+</p>
+
+<p>
+  <strong>Management fee:</strong>
+  <%= @invoice.management_fee %>
+</p>
+
+<p>
+  <strong>Tax 1:</strong>
+  <%= @invoice.tax_1 %>
+</p>
+
+<p>
+  <strong>Subtotal 1:</strong>
+  <%= @invoice.subtotal_1 %>
+</p>
+
+<p>
+  <strong>Electric fee:</strong>
+  <%= @invoice.electric_fee %>
+</p>
+
+<p>
+  <strong>Tax 2:</strong>
+  <%= @invoice.tax_2 %>
+</p>
+
+<p>
+  <strong>Subtotal 2:</strong>
+  <%= @invoice.subtotal_2 %>
+</p>
+
+<p>
+  <strong>Water fee:</strong>
+  <%= @invoice.water_fee %>
+</p>
+
+<p>
+  <strong>Tv fee:</strong>
+  <%= @invoice.tv_fee %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @invoice.total %>
+</p>
+
+<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
+<%= link_to 'Back', invoices_path %>
