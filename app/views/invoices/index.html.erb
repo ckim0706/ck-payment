@@ -24,7 +24,24 @@
           <th colspan="3"></th>
         </tr>
       </thead>
-
+      <tfoot>
+        <tr>
+          <th>합계</th>
+          <th></th>
+          <th></th>
+          <th><%= @invoices.sum(:deposit) %></th>
+          <th><%= @invoices.sum(:rent) %></th>
+          <th><%= @invoices.sum(:management_fee) %></th>
+          <th><%= @invoices.sum(:tax_1) %></th>
+          <th><%= @invoices.sum(:subtotal_1) %></th>
+          <th><%= @invoices.sum(:electric_fee) %></th>
+          <th><%= @invoices.sum(:subtotal_2) %></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th><%= @invoices.sum(:total) %></th>
+        </tr>
+      </tfoot>        
       <tbody>
         <% @invoices.each do |invoice| %>
           <tr>
@@ -54,16 +71,14 @@
 <br>
 
 
-<div>
+<div class="form-group">
   <h3>Import a CSV File</h3>
     <%= form_tag import_invoices_path, multipart: true do %>
       <%= file_field_tag :file %>
-      <%= submit_tag "Import CSV" %>
+      <br>
+      <%= submit_tag "Import CSV", :class => "btn btn-xs btn-default" %>
     <% end %>
 </div>
 
 <br>
-
-<%= link_to 'New Invoice', new_invoice_path %>
-
 
