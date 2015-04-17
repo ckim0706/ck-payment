@@ -6,7 +6,7 @@ class OrderPdf < Prawn::Document
   end
 
   def invoice_number
-    text "Invoice \##{@invoice.floor_area}"
+    text "Invoice \##{@invoice.floor_area} #{@invoice.name}"
   end
 
 
