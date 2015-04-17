@@ -15,6 +15,9 @@ class CreateInvoices < ActiveRecord::Migration
       t.integer :water_fee
       t.integer :tv_fee
       t.integer :total
+      t.string :account_location
+      t.string :account_number
+      t.string :account_name
 
       t.timestamps null: false
     end

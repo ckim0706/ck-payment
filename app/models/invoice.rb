@@ -1,12 +1,12 @@
 require 'csv'
 
 class Invoice < ActiveRecord::Base
-  after_create :add_account_info
+  before_create :add_account_info
 
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|
       invoice_hash = row.to_hash
-      Invoice.create(invoice_hash)
+      Invoice.create!(invoice_hash)
     end
   end
 
@@ -24,11 +24,12 @@ class Invoice < ActiveRecord::Base
       self.account_number = info["김형선"]
       self.account_name = info.keys[2]
     when "2"
-      self.account_number == info["박삼인"]
-      self.account_name == info.keys[1]
+      self.account_number = info["박삼인"]
+      self.account_name = info.keys[1]
     else
-      self.account_number == info["김성일"]
-      self.account_name == info.keys[0]
+      self.account_number = info["김성일"]
+      self.account_name = info.keys[0]
     end
   end
+  
 end

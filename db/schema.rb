@@ -28,8 +28,11 @@ ActiveRecord::Schema.define(version: 20150416080115) do
     t.integer  "water_fee"
     t.integer  "tv_fee"
     t.integer  "total"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "account_location"
+    t.string   "account_number"
+    t.string   "account_name"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
 end
