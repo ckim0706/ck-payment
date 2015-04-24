@@ -1,4 +1,4 @@
-class OrderPdf < Prawn::Document
+class InvoicePdf < Prawn::Document
 
   TABLE_ROW_COLORS = ["FFFFFF","DDDDDD"]
   TABLE_FONT_SIZE = 9
