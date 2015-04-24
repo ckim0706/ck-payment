@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150416080115) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "invoices", force: :cascade do |t|
     t.string   "floor_id"
     t.string   "name"
