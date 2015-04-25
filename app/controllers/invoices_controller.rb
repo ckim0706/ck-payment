@@ -1,14 +1,10 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
 
-  # GET /invoices
-  # GET /invoices.json
   def index
     @invoices = Invoice.all
   end
 
-  # GET /invoices/1
-  # GET /invoices/1.json
   def show
     @invoice = Invoice.find(params[:id])
     respond_to do |format|
@@ -22,40 +18,37 @@ class InvoicesController < ApplicationController
     end
   end
 
-
-  # GET /invoices/new
   def new
     @invoice = Invoice.new
   end
 
-  # GET /invoices/1/edit
   def edit
   end
 
-  # POST /invoices
-  # POST /invoices.json
   def create
     @invoice = Invoice.new(invoice_params)
-
     respond_to do |format|
       if @invoice.save
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
+        flash[:success] = "Invoice was successfully created."
+        format.html { redirect_to @invoice }
         format.json { render :show, status: :created, location: @invoice }
       else
+        flash[:danger] = "There was a problem creating the invoice."
         format.html { render :new }
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /invoices/1
-  # PATCH/PUT /invoices/1.json
+ 
   def update
     respond_to do |format|
       if @invoice.update(invoice_params)
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
+        flash[:success] = 'Invoice was successfully updated.'
+        format.html { redirect_to @invoice }
         format.json { render :show, status: :ok, location: @invoice }
       else
+        flash[:danger] = "There was a problem updating the invoice."
         format.html { render :edit }
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
       end
@@ -67,17 +60,20 @@ class InvoicesController < ApplicationController
   def destroy
     @invoice.destroy
     respond_to do |format|
-      format.html { redirect_to invoices_url, notice: 'Invoice was successfully destroyed.' }
+      flash[:success] = 'Invoice was successfully destroyed.'
+      format.html { redirect_to invoices_url }
       format.json { head :no_content }
     end
   end
 
   def import
     begin
+      flash[:success] = "Invoices Imported"
       Invoice.import(params[:file])
-      redirect_to root_url, notice: "Invoices Imported"
+      redirect_to root_url
     rescue
-      redirect_to root_url, notice: "Invalid CSV file format."
+      flash[:danger] = "Invalid CSV file format."
+      redirect_to root_url
     end      
   end
 
