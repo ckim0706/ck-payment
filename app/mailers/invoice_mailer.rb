@@ -7,7 +7,7 @@ class InvoiceMailer < ActionMailer::Base
          :content => pdf.render,
          :mime_type => 'application/pdf'
       }
-     mail to: "#{invoice.customer.email}",
-         subject: "Invoice ##{invoice.id} dated on #{invoice.purchase_date}",
+     mail(to: "#{invoice.customer.email}",
+         subject: "Invoice ##{invoice.id} dated on #{invoice.purchase_date}")
   end
 end
