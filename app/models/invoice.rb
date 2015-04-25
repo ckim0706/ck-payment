@@ -13,22 +13,18 @@ class Invoice < ActiveRecord::Base
   private
 
   def add_account_info
-    info = {"김성일"=>"443137-91-100082",
-            "박삼인"=>"443102-01-227335",
-            "김형선"=>"443102-01-227322"}
-
-    self.account_location = "국민은행"
+    self.account_location = ENV["b_name"]
     
     case self.floor_id[0]
     when "1"
-      self.account_number = info["김형선"]
-      self.account_name = info.keys[2]
+      self.account_number = ENV["b_3_info"]
+      self.account_name = ENV["b_3_name"]
     when "2"
-      self.account_number = info["박삼인"]
-      self.account_name = info.keys[1]
+      self.account_number = ENV["b_2_info"]
+      self.account_name = ENV["b_2_name"]
     else
-      self.account_number = info["김성일"]
-      self.account_name = info.keys[0]
+      self.account_number = ENV["b_2_info"]
+      self.account_name = ENV["b_1_name"]
     end
   end
   

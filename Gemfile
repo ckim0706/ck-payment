@@ -25,6 +25,7 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'prawn'
 gem 'prawn-table', '~> 0.2.0'
 gem 'pg'
+gem 'figaro'
 
 gem 'rails_12factor', group: :production
 
