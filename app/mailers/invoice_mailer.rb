@@ -10,4 +10,5 @@ class InvoiceMailer < ActionMailer::Base
      mail(to: "#{invoice.customer.email}",
          subject: "Invoice ##{invoice.id} dated on #{invoice.purchase_date}")
   end
+
 end

@@ -8,19 +8,25 @@
 </head>
 
 <body>
-	<div class="container">
-		<ul class="nav nav-tabs">
-			<li><%= link_to "Home", root_path %></li>
-			<li><%= link_to "Upload", root_path %></li>
-			<li><%= link_to "Sign Out", root_path %></li>
-		</ul>
+	<div class="container-narrow">
+	  
+	  <div class="masthead">
+	    <%= render 'layouts/user_header' %>
+	    <h3 class="muted"><%= link_to "ck Project", root_path %></h3>
+	  </div>
+	  
+	  <hr />
 
-			<div class="container">
-	    	<%= flash_messages %>
-			</div>
+		<div class="container">
+    	<%= flash_messages %>
+		</div>
+	  
+	  <div class="container">
+	 	 <%= yield %>
+    	
+		</div>
 
-	<%= yield %>
-	
+
 	</div>
 </body>
 </html>
