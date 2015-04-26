@@ -66,8 +66,7 @@ class InvoicesController < ApplicationController
 
   def import
     begin
-      p current_user
-      current_user.invoices.import(params[:file])
+      Invoice.import(params[:file])
       redirect_to invoices_path
     rescue
       flash[:error] = "Invalid CSV file format."

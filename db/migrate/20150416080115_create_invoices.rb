@@ -18,7 +18,7 @@ class CreateInvoices < ActiveRecord::Migration
       t.string :account_location
       t.string :account_number
       t.string :account_name
-      t.integer :user_id
+      t.belongs_to :user, index: true
 
       t.timestamps null: false
     end

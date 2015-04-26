@@ -3,16 +3,25 @@ require 'csv'
 class Invoice < ActiveRecord::Base
   before_create :check_admin
 
+  belongs_to :user
 
-  belongs_to :user, class_name: "User", foreign_key: :user_id
-
+  # def self.import(file)
+  #   CSV.foreach(file.path, headers:true) do |row|
+  #     invoice_hash = row.to_hash
+  #     Invoice.create!(invoice_hash)
+  #   end
+  # end
 
   def self.import(file)
-    CSV.foreach(file.path, headers:true) do |row|
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
       invoice_hash = row.to_hash
       Invoice.create!(invoice_hash)
     end
   end
+
 
   private
 

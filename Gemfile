@@ -27,6 +27,8 @@ gem 'prawn-table', '~> 0.2.0'
 gem 'pg'
 gem 'figaro'
 gem 'devise'
+gem 'roo', '~> 2.0.0'
+
 
 gem 'rails_12factor', group: :production
 
