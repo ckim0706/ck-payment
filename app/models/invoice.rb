@@ -1,7 +1,11 @@
 require 'csv'
 
 class Invoice < ActiveRecord::Base
-  before_create :add_account_info
+  before_create :check_admin
+
+
+  belongs_to :user, class_name: "User", foreign_key: :user_id
+
 
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|
@@ -11,6 +15,13 @@ class Invoice < ActiveRecord::Base
   end
 
   private
+
+  def check_admin
+    p current_user
+    if current_user == User.find_by(email: ENV["GMAIL"])
+      add_account_info
+    end
+  end 
 
   def add_account_info
     self.account_location = ENV["b_name"]
@@ -27,5 +38,5 @@ class Invoice < ActiveRecord::Base
       self.account_name = ENV["b_1_name"]
     end
   end
-  
+
 end

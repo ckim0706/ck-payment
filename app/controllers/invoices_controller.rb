@@ -1,12 +1,13 @@
 class InvoicesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
 
   def index
-    @invoices = Invoice.all
+    @invoices = current_user.invoices.all
   end
 
   def show
-    @invoice = Invoice.find(params[:id])
+    @invoice = current_user.invoices.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
@@ -19,21 +20,21 @@ class InvoicesController < ApplicationController
   end
 
   def new
-    @invoice = Invoice.new
+    @invoice = current_user.invoice.new
   end
 
   def edit
   end
 
   def create
-    @invoice = Invoice.new(invoice_params)
+    @invoice = current_user.invoices.new(invoice_params)
     respond_to do |format|
       if @invoice.save
         flash[:success] = "Invoice was successfully created."
         format.html { redirect_to @invoice }
         format.json { render :show, status: :created, location: @invoice }
       else
-        flash[:danger] = "There was a problem creating the invoice."
+        flash[:error] = "There was a problem creating the invoice."
         format.html { render :new }
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
       end
@@ -47,7 +48,7 @@ class InvoicesController < ApplicationController
         format.html { redirect_to @invoice }
         format.json { render :show, status: :ok, location: @invoice }
       else
-        flash[:danger] = "There was a problem updating the invoice."
+        flash[:error] = "There was a problem updating the invoice."
         format.html { render :edit }
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
       end
@@ -65,12 +66,12 @@ class InvoicesController < ApplicationController
 
   def import
     begin
-      flash[:success] = "Invoices Imported"
-      Invoice.import(params[:file])
-      redirect_to root_url
+      p current_user
+      current_user.invoices.import(params[:file])
+      redirect_to invoices_path
     rescue
-      flash[:danger] = "Invalid CSV file format."
-      redirect_to root_url
+      flash[:error] = "Invalid CSV file format."
+      redirect_to invoices_path
     end      
   end
 
