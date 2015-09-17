@@ -2,32 +2,45 @@ require 'csv'
 
 class Invoice < ActiveRecord::Base
   before_create :check_admin
+  before_save :invoice_tax_1, :invoice_tax_2, :invoice_subtotal_1, :invoice_subtotal_2, :invoice_total
 
   belongs_to :user
 
-  # def self.import(file)
-  #   CSV.foreach(file.path, headers:true) do |row|
-  #     invoice_hash = row.to_hash
-  #     Invoice.create!(invoice_hash)
-  #   end
-  # end
-
   def self.import(file)
-    spreadsheet = open_spreadsheet(file)
-    header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).each do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      invoice_hash = row.to_hash
+    CSV.foreach(file.path, headers:true) do |row|
+      invoice_hash = row.to_hash.slice(:floor_id, :name, :floor_area, :deposit, :rent, :management_fee, :tax_1, :subtotal_1, :electric_fee, :tax_2, :subtotal_2, :water_fee, :tv_fee, :total)
       Invoice.create!(invoice_hash)
     end
   end
 
-
   private
+  # 부가세1
+  def invoice_tax_1
+    self.tax_1 = (self.rent + self.management_fee)/10
+  end
+
+  # 부가세2
+  def invoice_tax_2
+    self.tax_2 = self.electric_fee/10
+  end
+
+  # 소계(A)
+  def invoice_subtotal_1
+    self.subtotal_1 = self.rent + self.management_fee + self.tax_1
+  end
+
+  # 소계(B)
+  def invoice_subtotal_2
+    self.subtotal_2 = self.electric_fee + self.tax_2
+  end
+
+  # 총합계
+  def invoice_total
+    self.total = self.subtotal_1 + self.subtotal_2 + self.tv_fee + self.water_fee
+  end
 
   def check_admin
-    p current_user
-    if current_user == User.find_by(email: ENV["GMAIL"])
+    if self.user_id == User.find_by(email: ENV["gmail_username"]).id
       add_account_info
     end
   end 
@@ -43,9 +56,8 @@ class Invoice < ActiveRecord::Base
       self.account_number = ENV["b_2_info"]
       self.account_name = ENV["b_2_name"]
     else
-      self.account_number = ENV["b_2_info"]
+      self.account_number = ENV["b_1_info"]
       self.account_name = ENV["b_1_name"]
     end
   end
-
 end

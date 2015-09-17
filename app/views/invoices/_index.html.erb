@@ -1,0 +1,27 @@
+<% @invoices.each do |invoice| %>
+  <tr>
+    <td><%= best_in_place invoice, :floor_id %></td>
+    <td><%= best_in_place invoice, :name %></td>
+    <td><%= best_in_place invoice, :floor_area %></td>
+    <td><%= best_in_place invoice, :deposit %></td>
+    <td><%= best_in_place invoice, :rent %></td>
+    <td><%= best_in_place invoice, :management_fee %></td>
+    <td class="no-edit"><%= invoice.tax_1 %></td>
+    <td class="no-edit"><%= invoice.subtotal_1 %></td>
+    <td><%= best_in_place invoice, :electric_fee %></td>
+    <td class="no-edit"><%= invoice.tax_2 %></td>
+    <td class="no-edit"><%= invoice.subtotal_2 %></td>
+    <td><%= best_in_place invoice, :water_fee %></td>
+    <td><%= best_in_place invoice, :tv_fee %></td>
+    <td class="no-edit"><%= invoice.total %></td>
+    <td><%= best_in_place invoice, :invoice_month %></td>
+    <td><%= best_in_place invoice, :invoice_due_date %></td>
+    <td><%= best_in_place invoice, :electric_month %></td>
+    <td><%= best_in_place invoice, :rent_usage_date %></td>
+    <td><%= best_in_place invoice, :invoice_creation_date %></td>
+    <td><%= best_in_place invoice, :email %></td>
+    <td><%= link_to 'PDF', invoice_path(invoice, format: "pdf"), class: 'btn btn-xs btn-success' %>
+        <%= link_to 'Email', sendinvoice_invoice_path(invoice), class: 'btn btn-xs btn-default' %>
+        <%= link_to 'Destroy', invoice, class: 'btn btn-xs btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>

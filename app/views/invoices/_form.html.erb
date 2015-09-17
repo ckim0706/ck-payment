@@ -1,73 +1,65 @@
-<%= form_for(@invoice) do |f| %>
-  <% if @invoice.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
-
-      <ul>
-      <% @invoice.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title">새 청구서</h4>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :floor_id %><br>
-    <%= f.text_field :floor_id %>
+    <%= form_for @invoice, remote: true do |f| %>
+    <div class="modal-body form-horizontal">  
+      <div class="form-group">
+        <%= f.label :floor_id, "층호", class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :floor_id, class: "form-control", placeholder: "예: 101, 201, 301, 지하1" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :name, "상호", class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :name, class: "form-control", placeholder: "예: XX 학원" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :deposit, "보증금", class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :deposit, class: "form-control", placeholder: "예: 10000" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :rent, "임대료", class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :rent, class: "form-control", placeholder: "예: 10000" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :management_fee, "관리비", class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :management_fee, class: "form-control", placeholder: "예: 10000" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :electric_fee, "전기료", class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :electric_fee, class: "form-control", placeholder: "예: 10000" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :water_fee, "상하수도료", class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :water_fee, class: "form-control", placeholder: "예: 10000" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :tv_fee, "TV", class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :tv_fee, class: "form-control", placeholder: "예: 10000" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <%= f.submit "저장하기", class: "btn btn-primary" %>
+    </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :floor_area %><br>
-    <%= f.number_field :floor_area %>
-  </div>
-  <div class="field">
-    <%= f.label :deposit %><br>
-    <%= f.number_field :deposit %>
-  </div>
-  <div class="field">
-    <%= f.label :rent %><br>
-    <%= f.number_field :rent %>
-  </div>
-  <div class="field">
-    <%= f.label :management_fee %><br>
-    <%= f.number_field :management_fee %>
-  </div>
-  <div class="field">
-    <%= f.label :tax_1 %><br>
-    <%= f.number_field :tax_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :subtotal_1 %><br>
-    <%= f.number_field :subtotal_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :electric_fee %><br>
-    <%= f.number_field :electric_fee %>
-  </div>
-  <div class="field">
-    <%= f.label :tax_2 %><br>
-    <%= f.number_field :tax_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :subtotal_2 %><br>
-    <%= f.number_field :subtotal_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :water_fee %><br>
-    <%= f.number_field :water_fee %>
-  </div>
-  <div class="field">
-    <%= f.label :tv_fee %><br>
-    <%= f.number_field :tv_fee %>
-  </div>
-  <div class="field">
-    <%= f.label :total %><br>
-    <%= f.number_field :total %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
