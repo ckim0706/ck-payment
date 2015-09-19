@@ -1,61 +1,66 @@
 <%= link_to "새 청구서", new_invoice_path, remote: true, class: 'btn btn-xs btn-primary' %>
 <br>
+<br>
 
-<div class="media">
-  <div class="media-body">
-    <table class="table-bordered table-hover">
-
-      <thead>
-        <tr>
-          <th>층호</th>
-          <th>상호</th>
-          <th>실평수</th>
-          <th>보증금(만)</th>
-          <th>임대료</th>
-          <th>관리비</th>
-          <th>부가세1</th>
-          <th>소계(A)</th>
-          <th>전기료</th>
-          <th>부가세2</th>
-          <th>소계(B)</th>
-          <th>상하수도료</th>
-          <th>TV</th>
-          <th>합계</th>
-          <th>월분</th>
-          <th>납부기한</th>
-          <th>전기사용날짜</th>
-          <th>임대사용날짜</th>
-          <th>작성일</th>
-          <th>Email</th>
-          <th>Options</th>
-        </tr>
-      </thead>
-
-      <tbody class "invoice-index">
-        <%= render "index" %>
-      </tbody>
-
-      <tfoot>
-        <tr>
-          <th>합계</th>
-          <th></th>
-          <th></th>
-          <th><%= @invoices.sum(:deposit) %></th>
-          <th><%= @invoices.sum(:rent) %></th>
-          <th><%= @invoices.sum(:management_fee) %></th>
-          <th><%= @invoices.sum(:tax_1) %></th>
-          <th><%= @invoices.sum(:subtotal_1) %></th>
-          <th><%= @invoices.sum(:electric_fee) %></th>
-          <th><%= @invoices.sum(:subtotal_2) %></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th><%= num_to_won(@invoices.sum(:total)) %></th>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+<div class="alert alert-info alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Hint</strong> Clicking on the table cell, you are able to edit inline like a spreadsheet!
 </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+
+        <thead>
+          <tr>
+            <th>층호</th>
+            <th>상호</th>
+            <th>실평수</th>
+            <th>보증금(만)</th>
+            <th>임대료</th>
+            <th>관리비</th>
+            <th>부가세1</th>
+            <th>소계(A)</th>
+            <th>전기료</th>
+            <th>부가세2</th>
+            <th>소계(B)</th>
+            <th>상하수도료</th>
+            <th>TV</th>
+            <th>합계</th>
+            <th>월분</th>
+            <th>납부기한</th>
+            <th>전기사용날짜</th>
+            <th>임대사용날짜</th>
+            <th>작성일</th>
+            <th>Email</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+
+        <tbody class "invoice-index">
+          <%= render "index" %>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <th>합계</th>
+            <th></th>
+            <th></th>
+            <th><%= @invoices.sum(:deposit) %></th>
+            <th><%= @invoices.sum(:rent) %></th>
+            <th><%= @invoices.sum(:management_fee) %></th>
+            <th><%= @invoices.sum(:tax_1) %></th>
+            <th><%= @invoices.sum(:subtotal_1) %></th>
+            <th><%= @invoices.sum(:electric_fee) %></th>
+            <th><%= @invoices.sum(:subtotal_2) %></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th><%= num_to_won(@invoices.sum(:total)) %></th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  
 
 <div id="invoice-modal" class="modal fade"></div>
 
