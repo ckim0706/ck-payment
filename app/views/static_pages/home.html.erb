@@ -31,17 +31,20 @@
   <% end %>
 </div>
 
-<div class="jumbotron">
-  <p class="lead">
-    Please sign in to the following to see pre-existing examples:
-  </p>
+<% if user_signed_in? %>
 
-  <p class="lead">
+<% else %>
+
+  <div class="jumbotron">
+    <p class="lead">
+      Please sign in to the following to see pre-existing examples:
+    </p>
+    <p class="lead">
       <em>ID:</em> <b>test@test.com</b>
-  </p>
-
+    </p>
     <p class="lead">
       <em>PW:</em> <b>testing123</b>
-  </p>
+    </p>
+  </div>
 
-</div>
+<% end %>
