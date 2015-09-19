@@ -75,11 +75,7 @@ class InvoicePdf < Prawn::Document
             [{:content => "소계", align: :center}, {:content => "#{@invoice.subtotal_2}", :colspan => 2, align: :right}],
 
             [{:content => "상하수도료", :colspan => 2, align: :center}, {:content => "#{@invoice.water_fee}", :colspan => 2, align: :right}],
-            [{:content => "dynamic variable", :colspan => 2, align: :center}, {:content => "nothing yet", :colspan => 2, align: :right}],
-            [{:content => "당월부과액", :colspan => 2, align: :center}, {:content => "#{@invoice.total}", :colspan => 2, align: :right}],
-            [{:content => "미납금액", :colspan => 2, align: :center}, {:content => "#{@invoice.water_fee}", :colspan => 2, align: :right}],
-            [{:content => "미납연체료", :colspan => 2, align: :center}, {:content => "#{@invoice.water_fee}", :colspan => 2, align: :right}],
-            [{:content => "납기내금액", :colspan => 2, align: :center}, {:content => "#{@invoice.water_fee}", :colspan => 2, align: :right}]]
+            [{:content => "당월부과액", :colspan => 2, align: :center}, {:content => "#{@invoice.total}", :colspan => 2, align: :right}]
 
     table data, :cell_style => { :width => 135 }, 
                 :position => :center
@@ -113,7 +109,7 @@ class InvoicePdf < Prawn::Document
   def stamp
     move_down 20
     y_position = cursor
-    text "만수빌딩 대표   김 성일", align: :center
+    text "John Doe 건물 대표   John Doe", align: :center
     image "#{Rails.root}/app/assets/images/stamp.png", width: 20, height: 20, :at => [340, y_position]
   end
 

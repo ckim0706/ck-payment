@@ -1,7 +1,7 @@
 require 'csv'
 
 class Invoice < ActiveRecord::Base
-  before_create :check_admin
+  before_create :add_account_info
   before_save :invoice_tax_1, :invoice_tax_2, :invoice_subtotal_1, :invoice_subtotal_2, :invoice_total
 
   belongs_to :user
@@ -39,25 +39,19 @@ class Invoice < ActiveRecord::Base
     self.total = self.subtotal_1 + self.subtotal_2 + self.tv_fee + self.water_fee
   end
 
-  def check_admin
-    if self.user_id == User.find_by(email: ENV["gmail_username"]).id
-      add_account_info
-    end
-  end 
-
   def add_account_info
-    self.account_location = ENV["b_name"]
+    self.account_location = "예시 은행"
     
     case self.floor_id[0]
     when "1"
-      self.account_number = ENV["b_3_info"]
-      self.account_name = ENV["b_3_name"]
+      self.account_number = "123-1234-12345"
+      self.account_name = "김님"
     when "2"
-      self.account_number = ENV["b_2_info"]
-      self.account_name = ENV["b_2_name"]
+      self.account_number = "987-9876-98765"
+      self.account_name = "박님"
     else
-      self.account_number = ENV["b_1_info"]
-      self.account_name = ENV["b_1_name"]
+      self.account_number = "567-5678-56789"
+      self.account_name = "하님"
     end
   end
 end
