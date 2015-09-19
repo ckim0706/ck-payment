@@ -75,7 +75,7 @@ class InvoicePdf < Prawn::Document
             [{:content => "소계", align: :center}, {:content => "#{@invoice.subtotal_2}", :colspan => 2, align: :right}],
 
             [{:content => "상하수도료", :colspan => 2, align: :center}, {:content => "#{@invoice.water_fee}", :colspan => 2, align: :right}],
-            [{:content => "당월부과액", :colspan => 2, align: :center}, {:content => "#{@invoice.total}", :colspan => 2, align: :right}]
+            [{:content => "당월부과액", :colspan => 2, align: :center}, {:content => "#{@invoice.total}", :colspan => 2, align: :right}]]
 
     table data, :cell_style => { :width => 135 }, 
                 :position => :center
