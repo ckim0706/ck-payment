@@ -13,3 +13,12 @@ test:
   pool: 5
   username: 
   password:
+
+production:
+  adapter:  postgresql
+  host:     localhost
+  encoding: unicode
+  database: store_production
+  pool:     5
+  username:
+  password:
