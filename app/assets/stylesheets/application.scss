@@ -39,7 +39,7 @@ td, th {
 }
 
 .container {
-  width: 1500px;
+  width: 1370px;
 }
 
 .modal-header {
@@ -52,4 +52,12 @@ td, th {
 
 .no-edit {
   background-color: #D6D6D6;
+}
+
+.muted {
+  padding-left: 20px;
+}
+
+.nav > li {
+  border: 1px solid #D6D6D6;
 }

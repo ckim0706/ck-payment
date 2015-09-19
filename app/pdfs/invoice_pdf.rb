@@ -109,7 +109,7 @@ class InvoicePdf < Prawn::Document
   def stamp
     move_down 20
     y_position = cursor
-    text "John Doe 건물 대표   John Doe", align: :center
+    text " XX건물 대표  김 XX", align: :center
     image "#{Rails.root}/app/assets/images/stamp.png", width: 20, height: 20, :at => [340, y_position]
   end
 

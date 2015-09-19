@@ -38,7 +38,7 @@ class InvoicesController < ApplicationController
         flash[:success] = "Invoice was successfully created."
         format.html { redirect_to @invoice }
         format.json { render :show, status: :created, location: @invoice }  
-        format.js
+        format.js { render action: 'create', status: :created, location: @invoice }
       else
         flash[:error] = "There was a problem creating the invoice."
         format.html { render :new }

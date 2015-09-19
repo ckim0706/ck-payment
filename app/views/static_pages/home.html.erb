@@ -1,11 +1,10 @@
 <div class="jumbotron">
   <% if user_signed_in? %>
     
-    <h1>Welcome back, trusted user!</h1>
+    <h1>Welcome back, User!</h1>
     
     <p class="lead">
-      You have signed in!  If this were a real app some sweet conent
-      would go here.  But it's just a test.  You might want to sign out now.
+      Please go to invoices and try the emailing pdf function!
     </p>
     
     <%= link_to "Sign Out", destroy_user_session_path, :method => :delete, :class => 'btn btn-large btn-danger' %>
@@ -14,18 +13,20 @@
     
     <h1>Welcome, new user!</h1>
     <p class="lead">
-      You must sign in or sign up before you can access our super sweet,
-      top secret content.
+      This is a example of Web app to create a Property Management Payment Invoice. 
     </p>
-    
-    <div class="row-fluid">
-      <div class="span6">
-        <%= link_to "Sign In", new_user_session_path, :class => "btn btn-success" %>
-      </div>
-      <div class="span6">
-        <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-success" %>
-      </div>
-    </div>
+
+    <p class="lead">
+      Users are able to create or upload invoices (rows) through the web or their own CSV files.
+    </p>
+
+    <p class="lead">
+      Filling the form details and last column, <em>EMAIL</em>, will send the PDF attachment to that address. 
+    </p>
+
+    <p class="lead">
+      Anyone who wishes to customize the forms, contact me and I will get back to you.
+    </p>
   
   <% end %>
 

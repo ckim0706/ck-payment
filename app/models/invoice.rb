@@ -41,6 +41,12 @@ class Invoice < ActiveRecord::Base
 
   def add_account_info
     self.account_location = "예시 은행"
+    self.invoice_month = "2015년 1월 30일"
+    self.invoice_due_date = "1월 30일"
+    self.electric_month = "1/1 ~ 1/30"
+    self.rent_usage_date = "1/1 ~1/30"
+    self.invoice_creation_date = "1월 30일"
+    self.email = "example@gmail.com"
     
     case self.floor_id[0]
     when "1"
